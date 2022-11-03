@@ -11,7 +11,7 @@ The connection of ESP to the receiver and transmitter looks like this:
 
 ![alt text](images/txrx_sch.png)
 
-When you build the ESPHome image you should have the transmitter defined in yaml file like this:
+When you build the ESPHome image you should have the transmitter defined in yaml file like below:
 ```
 remote_transmitter:
   pin:
@@ -39,17 +39,17 @@ external_components:
       type: git
       url: https://github.com/BogdanDIA/Daikin_brc52A6x/esphome/
       ref: main
-    components: [ daikin_brc1]
+    components: [ daikin_brc1 ]
     refresh: 0s
 ```
 
-## The simplified way that do not use receiver and transmitter
+## The simplified way that do not use any additional HW for transmit and receive
 
-This method uses the fact that the AC receiver's output is open drain and can be connected with both receiver and transmitter pins of the ESP.
+This method uses the fact that the AC receiver's output is open drain and can be connected with both ESP's receiver and transmitter pins.
 
 ![alt text](images/simple_sch.png)
 
-This time the tranmitter should be defined like this where the output pin is open drain:
+In this case the tranmitter should be defined like below where the output pin is mandatory to be open drain:
 
 ```
 remote_transmitter:
@@ -61,3 +61,23 @@ remote_transmitter:
       open_drain: true
   carrier_duty_percent: 50%
 ```
+We also need a modified version of the remote_transmitter component that is able to output demodulated signal directly so that it can be fed into the receiver:
+```
+external_components:
+  - source:
+      type: git
+      url: https://github.com/BogdanDIA/Daikin_brc52A6x/esphome/
+      ref: main
+    components: [ daikin_brc1, remote_transmitter ]
+    refresh: 0s
+```
+
+##Additional considerations
+The TX and RX pins are related conencted to UART0 in ESP8266 processor. Therefore UART0 swap is needed so that the pins can be used as GPIO.
+```
+logger:
+  hardware_uart: UART0_SWAP
+```
+The UART0 is used briefly after boot until it is swapped by the ESPHome code. For that reason the TX (GPIO0) pin can go high state with push-pull enabled. However, this is not a problem as the 3V3-5V adapter is using on the 3.3V side a pull-up resistor when in high state and there is no risk on shorting the receiver if in that short moment it receive IR commands.  
+
+
