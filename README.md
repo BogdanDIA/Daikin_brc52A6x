@@ -32,3 +32,21 @@ remote_receiver:
       pullup: true
   tolerance: 25%
 ```
+
+## The simplified way that do not use receiver and transmitter
+
+This method uses the fact that the AC receiver's output is open drain and can be connected with both receiver and transmitter pins of the ESP.
+![alt text](images/simple_sch.png)
+
+This time the tranmitter should be defined like this where the output pin is open drain:
+
+```
+remote_transmitter:
+  pin:
+    number: GPIO1
+    inverted: true
+    mode:
+      output: true
+      open_drain: true
+  carrier_duty_percent: 50%
+```
