@@ -78,7 +78,7 @@ The TX and RX pins are connected to UART0 in ESP8266 processor. Therefore UART0 
 logger:
   hardware_uart: UART0_SWAP
 ```
-The UART0 transmits briefly after boot until it is swapped by the ESPHome code. For that reason the TX (GPIO0) pin will go high state with push-pull enabled. However, this is not a problem as the 3V3-5V adapter is using on the 3.3V side a pull-up resistor when in high state and there is no risk on shorting the receiver output if in that brief moment it receives IR commands.
+The UART0 transmits briefly after boot until it is swapped by the ESPHome code. For that reason the TX (GPIO0) pin will go high state with push-pull enabled. However, this is not a problem as the 3V3-5V adapter is using on the 3.3V and 5V sides a pull-up resistor when in high state and there is no risk on shorting the receiver's output if in that brief moment it receives IR commands.
 
 ESP8266 can be used with 5V IO directly as it is claimed to accept 5V on IO pins but not on the power. If a voltage level shifter is not used, probably it is a good idea to add a resistor from the ESP RX+TX to the ouput of AC's receiver.
 
