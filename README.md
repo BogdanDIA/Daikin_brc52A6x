@@ -1,5 +1,5 @@
 # Daikin_brc52A6x
-Control of Daikin AC with ESPHome. The aim is to be able to control the AC from both Home Assistant and remote control.
+Control of Daikin AC with both AC's remote and ESPHome(HA). This adds support for Daikin's BRC52A6x remote control but probably will work for other remotes as well.
 
 ## The regular way using an IR receiver and an IR transmitter
 
@@ -83,3 +83,6 @@ The UART0 transmits briefly after boot until it is swapped by the ESPHome code. 
 ESP8266 can be used with 5V IO directly as it is claimed to accept 5V on IO pins but not on the power. If a voltage level shifter is not used, probably it is a good idea to add a resistor from the ESP RX+TX to the ouput ot AC's receiver.
 
 You can find template yaml files in the example directory
+
+## Daikin IR protocol
+For thise interested in the exact IR protocol exchanged with bits and bytes, you will find a description of the protocol in the file protocol_BRC52A6X.txt
