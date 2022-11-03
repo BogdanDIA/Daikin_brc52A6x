@@ -1,0 +1,88 @@
+esphome:
+  name: daikin-ir
+
+external_components:
+      type: git
+      url: https://github.com/BogdanDIA/esphome
+      ref: dev
+    components: [ daikin_brc1 ]
+    refresh: 0s
+
+remote_transmitter:
+  id: ir_transmitter
+  pin:
+    number: GPIO1
+    mode:
+      output: true
+  carrier_duty_percent: 50%
+
+remote_receiver:
+  id: ir_receiver 
+  pin:
+    number: GPIO3
+    inverted: True
+    mode:
+      input: True
+      pullup: True
+  tolerance: 25%
+  idle: 30ms
+  dump: all
+  
+climate:
+  - platform: daikin_brc1
+    name: "Living Room AC"
+    id: my_climate
+    transmitter_id: ir_transmitter
+    receiver_id: ir_receiver
+    sensor: current_temp
+
+    visual:
+      temperature_step: 1
+      max_temperature: 30
+      min_temperature: 16
+
+sensor:
+  - platform: homeassistant
+    name: 'Living Room AC Current temperature'
+    entity_id: sensor.temphumiditypress1_temperature
+    id: current_temp
+    internal: true
+    accuracy_decimals: 0 
+    unit_of_measurement: °C
+  - platform: wifi_signal
+    name: "Living Room AC WiFi Signal"
+    update_interval: 60s
+
+esp8266:
+  board: esp01_1m
+  restore_from_flash: true
+
+# Enable logging
+logger:
+  hardware_uart: UART0_SWAP
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "add yours"
+
+ota:
+  password: "add yours"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Daikin-Ir Fallback Hotspot"
+    password: "add yours"
+
+  manual_ip:
+    static_ip: 192.168.0.144
+    gateway: 192.168.0.1
+    subnet: 255.255.255.0
+
+captive_portal:
+    
