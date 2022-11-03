@@ -1,1 +1,49 @@
+Pronto code:
 
+0000 006d 0000 0045 - pronto header- 38kHz carrier
+0156 0158 0156 0157 - 2x Header 
+00a0 0058 - Lead in 
+000c 000d 000c 0020 000e 001f 000d 000c 000e 001f 000d 000c 000d 000d 000d 000c - 01101000 - 00010110 - 0x16  
+000d 000c 000d 000d 000d 000c 000d 001f 000e 0020 000c 000d 000d 000d 000c 0020 - 00011001 - 10011000 - 0x98 
+000c 000e 000c 0020 000c 0022 000d 000c 000d 0020 000d 000c 000d 000c 000d 000d - 01101000 - 00010110 - 0x16
+000d 000c 000d 000c 000d 0020 000d 000c 000d 0022 000c 000d 000c 000d 000d 000d - 00101000 - 00010100 - 0x14
+000c 000d 000c 000c 000e 000c 000d 000c 000d 0022 000c 000d 000c 000d 000c 000e - 00001000 - 00010000 - 0x10
+000c 000d 000c 000d 000c 000e 000c 000d 000c 0020 000d 000d 000c 000d 000c 000d - 00001000 - 00010000 - 0x10
+000d 0020 000c 000d 000d 000d 000c 0020 000c 000e 000c 0020 000d 000c 000e 000c - 10010100 - 00101001 - 0x25
+000d 000c 000d 000c 000e 001f 000d 0020 000d 0020 000c 000e 000c 0020 000c 0022 - 00011011 - 11011000 - 0xb9
+000c 02c7 - Special mark and long space 
+00a1 0e4a - One bit mark and transmission ends
+
+Data:
+Byte0 - 0x16 - allways 0x16
+Byte1 - 0x92 - 0x90(fan, alt modes) + 0x02(mode)
+	fan, alt modes (1 nibble):
+		0011 - 0x3 - 0011 - Turbo
+		1001 - 0x9 - Quiet
+		0001 - 0x1 - Fan auto
+		1000 - 0x8 - Fan min
+		0200 - 0x4 - Fan med
+		0010 - 0x2 - Fan max
+	mode (1 nibble):
+		0001 - 0x1 - Dry
+		0010 - 0x2 - Cool
+		0100 - 0x4 - Fan only
+		1000 - 0x8 - Heat
+		1010 - 0xa - Auto (Heat_Cool)
+Byte2 - 0x16 - Time minutes 16
+Byte3 - 0x14 - Time Hours 14
+	Time on the remote: 14:16
+Byte4 - 0x10 Timer ON time
+Byte5 - 0x10 Timer OFF time
+Byte6 - 0x25 Temperature in C, 25C 
+Byte7 - 0xb9 -0xb0 nibble checksum + 0x0c nibble power toggle, swing, sleep
+	Checksum (1 nibble)
+		sum(all nibbles in all bytes) & 0x0f
+	Power Toggle, Swing, Sleep (1 nibble)
+		0100 - default 
+		1100 - Power Toggle enabled
+		0100 - Power Toggle disabled
+		0101 - Swing
+		0100 - No Swing
+		0110 - Sleep
+		0100 - No Sleep
