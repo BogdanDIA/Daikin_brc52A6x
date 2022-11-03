@@ -36,6 +36,7 @@ remote_receiver:
 ## The simplified way that do not use receiver and transmitter
 
 This method uses the fact that the AC receiver's output is open drain and can be connected with both receiver and transmitter pins of the ESP.
+
 ![alt text](images/simple_sch.png)
 
 This time the tranmitter should be defined like this where the output pin is open drain:
