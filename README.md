@@ -1,9 +1,9 @@
 # Daikin_brc52A6x
-Control of Daikin AC with both AC's remote and ESPHome(HA). This adds support for Daikin's BRC52A6x remote control but probably will work for other remotes as well.
+Control of Daikin AC with both AC's remote and ESPHome(HA). This adds support for Daikin's BRC52A6x remote control but probably will work with minor changes for other remotes as well.
 
 ## The regular way using an IR receiver and an IR transmitter
 
-The carrier frequency is 38kHz so a TSOP2238 can be used like in the schematics below. I am using the ESP01S together with an adapter that allows using a 5V power supply and also 5V tolerant input/output signals.
+For carrier frequency of 38kHz a TSOP2238 can be used like in the schematics below. I am using the ESP01S together with an adapter that allows using a 5V power supply and also can use 5V for input/output signals.
 
 ![alt text](images/adapter5V-3.3V.png)
 
@@ -32,7 +32,7 @@ remote_receiver:
       pullup: true
   tolerance: 25%
 ```
-Also you need to add an external repository where the new component for the transmitter and receiver exists:
+Also you need to add an external repository where the new component implementing transmitter and receiver exists:
 ```
 external_components:
   - source:
@@ -78,11 +78,11 @@ The TX and RX pins are connected to UART0 in ESP8266 processor. Therefore UART0 
 logger:
   hardware_uart: UART0_SWAP
 ```
-The UART0 transmits briefly after boot until it is swapped by the ESPHome code. For that reason the TX (GPIO0) pin will go high state with push-pull enabled. However, this is not a problem as the 3V3-5V adapter is using on the 3.3V side a pull-up resistor when in high state and there is no risk on shorting the receiver if in that short moment it receive IR commands.
+The UART0 transmits briefly after boot until it is swapped by the ESPHome code. For that reason the TX (GPIO0) pin will go high state with push-pull enabled. However, this is not a problem as the 3V3-5V adapter is using on the 3.3V side a pull-up resistor when in high state and there is no risk on shorting the receiver output if in that brief moment it receives IR commands.
 
-ESP8266 can be used with 5V IO directly as it is claimed to accept 5V on IO pins but not on the power. If a voltage level shifter is not used, probably it is a good idea to add a resistor from the ESP RX+TX to the ouput ot AC's receiver.
+ESP8266 can be used with 5V IO directly as it is claimed to accept 5V on IO pins but not on the power. If a voltage level shifter is not used, probably it is a good idea to add a resistor from the ESP RX+TX to the ouput of AC's receiver.
 
 You can find template yaml files in the example directory
 
 ## Daikin IR protocol
-For thise interested in the exact IR protocol exchanged with bits and bytes, you will find a description of the protocol in the file protocol_BRC52A6X.txt
+For those interested in the exact IR protocol exchanged at MARK/SPACE,bits,bytes level, you will can find a description of the protocol in the file protocol_BRC52A6X.txt
