@@ -11,7 +11,7 @@ The connection of ESP to the receiver and transmitter looks like this:
 
 ![alt text](images/txrx_sch.png)
 
-When you build the ESPHome image you should have the transmitter defined like this:
+When you build the ESPHome image you should have the transmitter defined in yaml file like this:
 ```
 remote_transmitter:
   pin:
@@ -31,6 +31,16 @@ remote_receiver:
       input: true
       pullup: true
   tolerance: 25%
+```
+Also you need to add an external repository where the new component for the transmitter and receiver exists:
+```
+external_components:
+  - source:
+      type: git
+      url: https://github.com/BogdanDIA/Daikin_brc52A6x/esphome/
+      ref: main
+    components: [ daikin_brc1]
+    refresh: 0s
 ```
 
 ## The simplified way that do not use receiver and transmitter
