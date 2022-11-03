@@ -72,7 +72,7 @@ external_components:
     refresh: 0s
 ```
 
-##Additional considerations
+## Additional considerations
 The TX and RX pins are related conencted to UART0 in ESP8266 processor. Therefore UART0 swap is needed so that the pins can be used as GPIO.
 ```
 logger:
