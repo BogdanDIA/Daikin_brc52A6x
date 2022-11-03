@@ -45,7 +45,7 @@ external_components:
 
 ## The simplified way that do not use any additional HW for transmit and receive
 
-This method uses the fact that the AC receiver's output is open drain and can be connected with both ESP's receiver and transmitter pins.
+This method uses the fact that the AC receiver's output is open drain and can be connected with both ESP's receiver and transmitter pins. Therefore the AC can receive the IR command from both remote control and ESP.
 
 ![alt text](images/simple_sch.png)
 
