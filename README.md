@@ -85,4 +85,4 @@ ESP8266 can be used with 5V IO directly as it is claimed to accept 5V on IO pins
 You can find template yaml files in the example directory
 
 ## Daikin IR protocol
-For those interested in the exact IR protocol exchanged at MARK/SPACE,bits,bytes level, you will can find a description of the protocol in the file protocol_BRC52A6X.txt
+For those interested in the exact IR protocol exchanged at MARK/SPACE,bits,bytes level, you can find a description of the protocol in the file protocol_BRC52A6X.txt
