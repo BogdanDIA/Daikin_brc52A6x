@@ -19,4 +19,15 @@ remote_transmitter:
     mode:
       output: true
   carrier_duty_percent: 50%
+...
+remote_receiver:
+  id: ir_receiver 
+  pin:
+    number: GPIO3
+    inverted: True
+    mode:
+      input: true
+      pullup: true
+  tolerance: 25%
+...
 ```
