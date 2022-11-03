@@ -37,7 +37,7 @@ Also you need to add an external repository where the new component implementing
 external_components:
   - source:
       type: git
-      url: https://github.com/BogdanDIA/Daikin_brc52A6x/esphome/
+      url: https://github.com/BogdanDIA/Daikin_brc52A6x/
       ref: main
     components: [ daikin_brc1 ]
     refresh: 0s
@@ -66,7 +66,7 @@ We also need a modified version of the remote_transmitter component that is able
 external_components:
   - source:
       type: git
-      url: https://github.com/BogdanDIA/Daikin_brc52A6x/esphome/
+      url: https://github.com/BogdanDIA/Daikin_brc52A6x/
       ref: main
     components: [ daikin_brc1, remote_transmitter ]
     refresh: 0s
