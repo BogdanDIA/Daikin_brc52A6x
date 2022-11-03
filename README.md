@@ -11,7 +11,7 @@ The connection of ESP to the receiver and transmitter looks like this:
 
 ![alt text](images/txrx_sch.png)
 
-When you build the ESPHome image you should have the transmitter and receiver defined like this:
+When you build the ESPHome image you should have the transmitter defined like this:
 ```
 remote_transmitter:
   pin:
@@ -19,7 +19,9 @@ remote_transmitter:
     mode:
       output: true
   carrier_duty_percent: 50%
-...
+```
+and the receiver defined linke this:
+```
 remote_receiver:
   id: ir_receiver 
   pin:
@@ -29,5 +31,4 @@ remote_receiver:
       input: true
       pullup: true
   tolerance: 25%
-...
 ```
