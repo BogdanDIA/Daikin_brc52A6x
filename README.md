@@ -73,7 +73,7 @@ external_components:
 ```
 
 ## Additional considerations
-The TX and RX pins are related conencted to UART0 in ESP8266 processor. Therefore UART0 swap is needed so that the pins can be used as GPIO.
+The TX and RX pins are connected to UART0 in ESP8266 processor. Therefore UART0 swap is needed so that the pins can be used as GPIO.
 ```
 logger:
   hardware_uart: UART0_SWAP
@@ -82,4 +82,4 @@ The UART0 transmits briefly after boot until it is swapped by the ESPHome code. 
 
 ESP8266 can be used with 5V IO directly as it is claimed to accept 5V on IO pins but not on the power. If a voltage level shifter is not used, probably it is a good idea to add a resistor from the ESP RX+TX to the ouput ot AC's receiver.
 
-
+You can find template yaml files in the example directory
