@@ -1,8 +1,7 @@
 # Daikin_brc52A6x
 Control of Daikin AC with both AC's remote and ESPHome(HA). This adds support for Daikin's BRC52A6x remote control but probably will work with minor changes for other remotes as well.
 
-![alt text](images/Living_AC_HA.png)
-![alt text](images/Living_AC2_HA.png)
+![alt text](images/Living_AC_HA.png) | ![alt text](images/Living_AC2_HA.png)
 
 ## The regular way using an IR receiver and an IR transmitter
 
