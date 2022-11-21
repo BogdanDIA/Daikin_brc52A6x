@@ -9,7 +9,7 @@ For carrier frequency of 38kHz a TSOP2238 can be used like in the schematics bel
 
 The connection of ESP to the receiver and transmitter looks like this:
 
-![alt text](images/txrx_sch.png)
+![alt text](images/trx_sch.png)
 
 When you build the ESPHome image you should have the transmitter defined in yaml file like below:
 ```
