@@ -4,7 +4,7 @@ esphome:
 external_components:
       type: git
       url: https://github.com/BogdanDIA/esphome
-      ref: dev
+      ref: main
     components: [ daikin_brc1 remote_transmitter ]
     refresh: 0s
 
